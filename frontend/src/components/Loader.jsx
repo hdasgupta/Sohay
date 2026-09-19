@@ -1,0 +1,1 @@
+import './Loader.css';export default function Loader({visible=false}){return visible?<div className="loader-backdrop"><div className="loader-box"><div className="hourglass">⌛</div><div>Working…</div></div></div>:null}

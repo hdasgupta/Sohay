@@ -1,0 +1,2 @@
+import React from 'react';import './ErrorHandler.css';
+export default class ErrorHandler extends React.Component{state={error:null};static getDerivedStateFromError(error){return{error}}componentDidCatch(error,info){console.error('[react] runtime error',error,info)}render(){if(this.state.error)return <div className="runtime-error"><h2>Something went wrong</h2><p>{this.state.error.message}</p><button className="btn" onClick={()=>location.reload()}>Reload application</button></div>;return this.props.children}}

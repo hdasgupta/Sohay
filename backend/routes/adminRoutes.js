@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import * as c from '../controllers/adminController.js';
+const r=Router();
+r.get('/doctors',c.listDoctors);
+r.get('/patients',c.listPatients);
+r.post('/doctors',c.addDoctor);
+r.put('/doctors/:id',c.editDoctor);
+r.patch('/doctors/:id/status',c.setDoctorActive);
+r.get('/reschedule/upcoming',c.upcoming);
+r.get('/reschedule/availability',c.availability);
+r.post('/reschedule',c.reschedule);
+export default r;

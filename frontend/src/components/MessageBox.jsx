@@ -1,0 +1,3 @@
+import {useEffect,useState} from 'react';import './MessageBox.css';
+const icons={info:'ℹ',success:'✓',warning:'⚠',error:'✕'};
+export default function MessageBox({message,onClose}){const[level,setLevel]=useState('info');const[text,setText]=useState('');useEffect(()=>{if(!message)return;setLevel(message.type||'info');setText(message.text||'');const t=setTimeout(()=>onClose?.(),Number(message.duration||10000));return()=>clearTimeout(t)},[message,onClose]);if(!message||!text)return null;return <div className={`messagebox ${level}`}><div className="message-icon">{icons[level]}</div><div className="message-body">{text}</div><button onClick={onClose}>×</button><div className="progress" style={{animationDuration:`${Number(message.duration||10000)}ms`}}/></div>}

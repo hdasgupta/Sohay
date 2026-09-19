@@ -1,0 +1,7 @@
+import {useMemo,useState} from 'react';import './DatePicker.css';
+function dateKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+export default function DatePicker({startDate,endDate,enabledWeekdays=[0,1,2,3,4,5,6],value='',onDateSelect}){
+ const start=new Date(`${startDate}T00:00:00`),end=new Date(`${endDate}T00:00:00`); const [cursor,setCursor]=useState(value?new Date(`${value}T00:00:00`):start); const monthStart=useMemo(()=>new Date(cursor.getFullYear(),cursor.getMonth(),1),[cursor]); const days=new Date(cursor.getFullYear(),cursor.getMonth()+1,0).getDate(); const lead=monthStart.getDay();
+ const can=(d)=>d>=start&&d<=end&&enabledWeekdays.includes(d.getDay());
+ return <div className="datepicker"><div className="dp-head"><button onClick={()=>setCursor(new Date(cursor.getFullYear(),cursor.getMonth()-1,1))}>‹</button><b>{cursor.toLocaleDateString(undefined,{month:'long',year:'numeric'})}</b><button onClick={()=>setCursor(new Date(cursor.getFullYear(),cursor.getMonth()+1,1))}>›</button></div><div className="dp-grid">{['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(x=><span className="dp-week" key={x}>{x}</span>)}{Array.from({length:lead}).map((_,i)=><span key={'e'+i}/>) }{Array.from({length:days},(_,i)=>{const d=new Date(cursor.getFullYear(),cursor.getMonth(),i+1),k=dateKey(d),ok=can(d);return <button key={k} className={value===k?'chosen':''} disabled={!ok} onClick={()=>onDateSelect?.(k)}>{i+1}</button>})}</div></div>;
+}

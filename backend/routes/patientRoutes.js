@@ -1,0 +1,16 @@
+import { Router } from 'express';
+import * as c from '../controllers/patientController.js';
+const r=Router();
+r.get('/family',c.getFamily);
+r.post('/family',c.createFamily);
+r.post('/family/invite',c.inviteFamily);
+r.post('/family/invites/:membershipId/:action',c.respondFamily);
+r.get('/family/members',c.familyMembers);
+r.get('/doctors',c.doctors);
+r.get('/availability',c.availability);
+r.post('/appointments',c.book);
+r.get('/appointments',c.appointments);
+r.patch('/appointments/:id/cancel',c.cancel);
+r.get('/appointments/:id/meeting-token',c.meetingToken);
+r.get('/appointments/:id/prescription',c.prescriptionDownload);
+export default r;

@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import * as c from '../controllers/authController.js';
+import { body } from '../middleware/validate.js';
+const r=Router();
+r.get('/captcha',c.captcha);
+r.post('/login',body('email','password','captchaId','captchaAnswer'),c.login);
+r.post('/register/send-otp',body('email'),c.sendRegistrationOtp);
+r.post('/register',body('name','sex','dateOfBirth','email','contactNumber','password','confirmPassword','captchaId','captchaAnswer','otp'),c.registerPatient);
+r.post('/reset/send-otp',body('email'),c.sendResetOtp);
+r.post('/reset',body('email','otp','password','confirmPassword','captchaId','captchaAnswer'),c.resetPassword);
+export default r;

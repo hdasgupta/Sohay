@@ -1,0 +1,15 @@
+import { Router } from 'express';
+import auth from './authRoutes.js';
+import admin from './adminRoutes.js';
+import patient from './patientRoutes.js';
+import doctor from './doctorRoutes.js';
+import webhooks from './webhookRoutes.js';
+import { authenticate, authorize } from '../middleware/auth.js';
+const r=Router();
+r.use('/auth',auth);
+r.use('/webhooks',webhooks);
+r.use('/admin',authenticate,authorize('admin'),admin);
+r.use('/patient',authenticate,authorize('patient'),patient);
+r.use('/doctor',authenticate,authorize('doctor'),doctor);
+r.get('/me',authenticate,(req,res)=>res.json({success:true,data:{user:req.user}}));
+export default r;

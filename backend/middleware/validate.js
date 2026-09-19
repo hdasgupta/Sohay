@@ -1,0 +1,1 @@
+export function body(...keys){ return (req,res,next)=>{const missing=keys.filter(k=>req.body?.[k]===undefined||req.body?.[k]===''); if(missing.length) return res.status(400).json({success:false,message:`Missing fields: ${missing.join(', ')}`}); next();}; }

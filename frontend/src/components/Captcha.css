@@ -1,0 +1,1 @@
+.captcha-box{display:grid;gap:8px}.captcha-image{background:#08111f;border-radius:10px;overflow:hidden;max-width:240px}.captcha-image img{display:block;width:240px;height:86px}.captcha-refresh{justify-self:start}

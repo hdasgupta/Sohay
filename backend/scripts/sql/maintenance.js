@@ -1,0 +1,1 @@
+export const cancelExpiredAppointmentsSql = `UPDATE appointments SET status=$1, updated_at=now() WHERE appointment_date < ((CURRENT_TIMESTAMP AT TIME ZONE $3)::date) AND status = ANY($2) RETURNING id`;

@@ -1,0 +1,34 @@
+{
+  "name": "wbffmh-appointment-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "node --watch main.js",
+    "start": "node main.js",
+    "migrate": "node scripts/apply-schema.js",
+    "seed": "node scripts/seed-admin.js",
+    "maintenance": "node scripts/nightly-maintenance.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1136.0",
+    "@aws-sdk/s3-request-presigner": "3.1136.0",
+    "googleapis": "181.0.0",
+    "axios": "1.20.0",
+    "bcryptjs": "3.0.3",
+    "cors": "2.8.6",
+    "dotenv": "17.4.2",
+    "express": "5.2.1",
+    "express-rate-limit": "8.7.0",
+    "helmet": "8.3.0",
+    "jsonwebtoken": "9.0.3",
+    "node-cron": "4.6.0",
+    "nodemailer": "10.0.9",
+    "pdf-lib": "1.17.1",
+    "pg": "8.23.0",
+    "uuid": "14.0.2"
+  }
+}
